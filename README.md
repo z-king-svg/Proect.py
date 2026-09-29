@@ -15,9 +15,14 @@
     Строгий синтаксический анализ и валидация результатов серий для форматов BO1, BO3 и BO5.
 
   **Мультимедиа и звуковой движок:**
-   Процедурный синтезатор звука: генерация 16-битного аудиоэффекта столкновения (sub-drop impact, 44.1 кГц) без внешних файлов через стандартные модули `math`, `struct` и `wave`.
+   Процедурный синтезатор звука: генерация 16-битного аудиоэффекта столкновения (sub-drop impact, 44.1 кГц)  через стандартные модули `math`, `struct` и `wave`.
    Воспроизведение звука под Windows через связку `winsound` и MCI API (`winmm.dll`) для потоков MP3/WAV.
    Система частиц (искры, ударные волны) с покадровой отрисовкой на холсте (~66 FPS).
+## Настройка медиа для заставки (Опционально)
+
+Приложение полностью автономно и генерирует звук процедурно, но поддерживает кастомизацию интро-экрана:
+* **Фотографии игроков на фоне:** создайте в папке со скриптом папку `players/` и поместите туда изображения (`.png`, `.jpg`, `.webp`). При старте алгоритм выберет случайные 4 фото, повернёт их и плавно встроит в заставку.
+* **Свой саундтрек/эффект:** если положить в корень проекта или в папку `players/` аудиофайл (`.mp3` или `.wav`), содержащий в названии ключевые слова (*intro, sound, audio, hit* и т.д.), плеер автоматически запустит его вместо стандартного синтезированного звука.
 
  **Экспорт и сборка:**
    Модульный рендеринг: экспорт сетки в высоком разрешении в PNG (`Pillow`) и создание наградного сертификата победителя в формате A4 PDF (`ReportLab`).
@@ -27,6 +32,7 @@
 
 **Базовый рантайм:** Python 3.10+ (Стандартная библиотека: `tkinter`, `threading`, `json`, `wave`, `struct`, `ctypes`, `subprocess`)
  **Опциональные пакеты:** `Pillow` (экспорт в PNG и логотипы), `reportlab` (генерация дипломов в PDF), `pyinstaller` (компиляция в EXE из интерфейса)
+ 
 
 
 # MatchDesk Studio v4.2
@@ -46,9 +52,15 @@ Standalone desktop application for generating, managing, and rendering esports t
    Strict match score parsing and verification for BO1, BO3, and BO5 series formats.
 
 **Audio & Multimedia Engine:**
-   Procedural waveform audio synthesizer: generates a 16-bit 44.1 kHz PCM sub-drop impact sound on the fly using standard `math`, `struct`, and `wave` modules without external assets.
+   Procedural waveform audio synthesizer: generates a 16-bit 44.1 kHz PCM  using standard `math`, `struct`, and `wave` modules without external assets.
    Native Windows audio playback via `winsound` and Windows MCI API (`winmm.dll`) for MP3/WAV streams.
    Particle physics engine (sparks, shockwaves) rendered frame-by-frame on Tkinter canvas (~66 FPS).
+## Splash Screen Media Customization (Optional)
+
+The application is fully standalone and synthesizes audio procedurally, but it also supports custom media for the intro screen:
+
+* **Background Player Photos:** Create a `players/` directory in the project folder and drop your images there (`.png`, `.jpg`, `.webp`). On launch, the engine will randomly select 4 photos, apply dynamic rotations and opacities, and composite them into the splash screen.
+* **Custom Soundtrack/Audio:** Place an audio file (`.mp3` or `.wav`) in the project root or inside the `players/` folder containing relevant keywords in its filename (*intro, sound, audio, hit*, etc.). The audio engine will automatically detect and play it instead of the procedurally synthesized sound.
 
  **Export & Deployment Pipeline:**
    Modular image and vector rendering: high-resolution bracket export to PNG (via `Pillow`) and winner certificate generation to A4 PDF (via `ReportLab`).
